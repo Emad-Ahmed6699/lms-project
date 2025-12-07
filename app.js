@@ -4,9 +4,18 @@ import bookRouter from "./routes/booksRoutes.js";
 import usersRouter from "./routes/usersRoutes.js";
 import borrowRouter from "./routes/borrowRoutes.js";
 import historyRouter from "./routes/historyRoutes.js";
+import cors from "cors";
 
 export const app = express();
 
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    credentials: true,
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(express.json());
 app.use(morgan("dev"));
