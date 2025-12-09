@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "role": "Admin",
+    "role": "admin",
     "name": "Abdelrahman ashraf",
     "email": "admin1@lms.com",
     "password": "admin1234"
