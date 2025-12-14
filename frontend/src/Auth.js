@@ -21,7 +21,7 @@ export default function Auth({
       <div className="auth-image-side">
         <div className="auth-image-content">
           <div className="logo-circle">📚</div>
-          <h1 className="brand-title">YallaLibrary</h1>
+          <h1 className="brand-title">LMS</h1>
           <p className="brand-sub">Your complete platform to manage libraries and books easily.</p>
         </div>
       </div>
@@ -116,7 +116,7 @@ export default function Auth({
             </form>
           )}
 
-          <div className="test-account-info">Test accounts:<br/> admin@test.com / adminpass <br/> emad12@gmail.com / emad123</div>
+          <div className="test-account-info">Test accounts:<br /> admin@test.com / adminpass <br /> emad12@gmail.com / emad123</div>
         </div>
       </div>
     </div>

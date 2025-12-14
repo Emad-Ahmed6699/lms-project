@@ -290,7 +290,7 @@ export function AdminPanel({ user, onLogout }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <div className="logo-brand">
-              <span className="logo-text">Yalla<span className="logo-accent">Library</span></span>
+              <span className="logo-text">LMS</span>
               <Book size={24} className="logo-svg" aria-hidden />
             </div>
           </div>
