@@ -125,52 +125,45 @@ const signUp = (req, res) => {
 
 const signIn = (req, res) => {
   const users = getUsers();
-  const { email, password } = req.body;
+  // The frontend sends the input in the 'email' variable, but it might be a username
+  const { email: loginInput, password } = req.body;
 
-  //  Validate required fields
-  if (!email || !password) {
+  // 1. Check if fields exist
+  if (!loginInput || !password) {
     return res.status(400).json({
       status: "fail",
-      message: "Email and password are required",
+      message: "Username/Email and password are required",
     });
   }
 
-  // Validate email format
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({
-      status: "fail",
-      message: "Invalid email format",
-    });
-  }
-
-  // Validate email and password types
-  if (typeof email !== "string" || typeof password !== "string") {
+  // 2. Validate types (BUT REMOVE THE EMAIL REGEX CHECK HERE)
+  if (typeof loginInput !== "string" || typeof password !== "string") {
     return res.status(400).json({
       status: "fail",
       message: "Invalid credentials format",
     });
   }
 
-  //Find user
+  // 3. Find user by checking BOTH Name AND Email
   const user = users.find(
     (u) =>
-      u.email.toLowerCase() === email.toLowerCase().trim() &&
+      (u.email.toLowerCase() === loginInput.toLowerCase().trim() || 
+       u.name.toLowerCase() === loginInput.toLowerCase().trim()) &&
       u.password === password.trim()
   );
 
-  // error message
+  // 4. Handle invalid login
   if (!user) {
     return res.status(401).json({
       status: "fail",
-      message: "Invalid email or password",
+      message: "Invalid email/username or password",
     });
   }
 
-  // Success response
+  // 5. Success
   res.status(200).json({
     status: "success",
-    message: `Welcome ${user.name}! You are logged in as ${user.role}`,
+    message: `Welcome ${user.name}!`,
     data: {
       id: user.id,
       name: user.name,
