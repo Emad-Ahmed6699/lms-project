@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
 
 :root {
-    /* pink-first hero */
-    --left-grad-1: #ff2d6f;
-    --left-grad-2: #ff6fa3;
+    /* pink-purple gradient from image */
+    --left-grad-1: #be185d;
+    /* Pink 700 */
+    --left-grad-2: #a855f7;
+    /* Purple 500 */
     --card-bg: #ffffff;
     --muted: #6b7280;
-    --accent-start: #ff2d6f;
-    --accent-end: #ff6fa3;
+    --accent-start: #be185d;
+    --accent-end: #a855f7;
 }
 
 /* Theme toggle button (shared) */
@@ -138,7 +140,8 @@ body {
 .auth-header h2 {
     margin: 0 0 6px;
     font-size: 32px;
-    color: #6b1b60;
+    color: #831843;
+    /* Darker Pink/Rose */
     font-weight: 800
 }
 

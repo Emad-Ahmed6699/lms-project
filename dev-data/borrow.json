@@ -15,5 +15,29 @@
     "dueDate": "2025-11-22",
     "returned": true,
     "returnDate": "2025-11-18"
+  },
+  {
+    "id": 3,
+    "bookId": 101,
+    "userId": 4,
+    "borrowDate": "2025-12-14",
+    "dueDate": "2025-12-21",
+    "returned": false
+  },
+  {
+    "id": 4,
+    "bookId": 104,
+    "userId": 5,
+    "borrowDate": "2025-12-14",
+    "dueDate": "2025-12-21",
+    "returned": false
+  },
+  {
+    "id": 5,
+    "bookId": 102,
+    "userId": 5,
+    "borrowDate": "2025-12-14",
+    "dueDate": "2025-12-21",
+    "returned": false
   }
 ]

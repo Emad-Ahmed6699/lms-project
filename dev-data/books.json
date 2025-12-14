@@ -5,7 +5,7 @@
     "author": "Douglas Adams",
     "isbn": "9780345391803",
     "category": "Sci-Fi",
-    "available": true
+    "available": false
   },
   {
     "id": 102,
@@ -20,7 +20,7 @@
     "title": "emad",
     "author": "ead",
     "isbn": "4654165465353",
-    "category": "afdhgs",
+    "category": "hhhhhhhh",
     "available": true
   }
 ]

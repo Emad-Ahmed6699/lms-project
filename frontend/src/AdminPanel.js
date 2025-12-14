@@ -284,9 +284,9 @@ export function AdminPanel({ user, onLogout }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-white dark:bg-gray-800 shadow transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <div className="logo-brand">
@@ -324,7 +324,7 @@ export function AdminPanel({ user, onLogout }) {
       )}
 
       {/* Tabs */}
-      <div className="bg-white border-b sticky top-0 z-40">
+      <div className="bg-white dark:bg-gray-800 border-b dark:border-gray-700 sticky top-0 z-40 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="admin-tabs">
             <button
@@ -354,7 +354,7 @@ export function AdminPanel({ user, onLogout }) {
         {activeTab === "books" && (
           <div>
             <div className="mb-6">
-            <button
+              <button
                 onClick={() => {
                   setShowAddForm(!showAddForm);
                   setEditingId(null);
@@ -373,13 +373,14 @@ export function AdminPanel({ user, onLogout }) {
 
             {/* Add/Edit Form */}
             {(showAddForm || editingId) && (
-              <div className="bg-white rounded-lg shadow p-6 mb-6 border-l-4 border-blue-600">
-                <h3 className="text-xl font-bold mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6 border-l-4 border-blue-600 dark:border-blue-500 transition-colors duration-200">
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
                   {editingId ? "Edit Book" : "Add New Book"}
                 </h3>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-gray-700 font-semibold mb-2">
+                    <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">
                       Title
                     </label>
                     <input
@@ -388,7 +389,7 @@ export function AdminPanel({ user, onLogout }) {
                       onChange={(e) =>
                         setFormData({ ...formData, title: e.target.value })
                       }
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white dark:bg-gray-700 dark:text-white"
                       placeholder="Book title"
                     />
                   </div>
@@ -402,7 +403,7 @@ export function AdminPanel({ user, onLogout }) {
                       onChange={(e) =>
                         setFormData({ ...formData, author: e.target.value })
                       }
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white dark:bg-gray-700 dark:text-white"
                       placeholder="Author name"
                     />
                   </div>
@@ -416,7 +417,7 @@ export function AdminPanel({ user, onLogout }) {
                       onChange={(e) =>
                         setFormData({ ...formData, category: e.target.value })
                       }
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white dark:bg-gray-700 dark:text-white"
                       placeholder="Category"
                     />
                   </div>
@@ -430,7 +431,7 @@ export function AdminPanel({ user, onLogout }) {
                       onChange={(e) =>
                         setFormData({ ...formData, isbn: e.target.value })
                       }
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white dark:bg-gray-700 dark:text-white"
                       placeholder="ISBN"
                     />
                   </div>
@@ -492,40 +493,40 @@ export function AdminPanel({ user, onLogout }) {
                 Loading books...
               </div>
             ) : (
-              <div className="bg-white rounded-lg shadow overflow-hidden">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden transition-colors duration-200">
                 <table className="w-full">
-                  <thead className="bg-gray-100 border-b">
+                  <thead className="bg-gray-100 dark:bg-gray-700 border-b dark:border-gray-600 transition-colors duration-200">
                     <tr>
-                      <th className="px-6 py-3 text-left text-gray-900 font-semibold">
+                      <th className="px-6 py-3 text-left text-gray-900 dark:text-gray-100 font-semibold">
                         Title
                       </th>
-                      <th className="px-6 py-3 text-left text-gray-900 font-semibold">
+                      <th className="px-6 py-3 text-left text-gray-900 dark:text-gray-100 font-semibold">
                         Author
                       </th>
-                      <th className="px-6 py-3 text-left text-gray-900 font-semibold">
+                      <th className="px-6 py-3 text-left text-gray-900 dark:text-gray-100 font-semibold">
                         Category
                       </th>
-                      <th className="px-6 py-3 text-left text-gray-900 font-semibold">
+                      <th className="px-6 py-3 text-left text-gray-900 dark:text-gray-100 font-semibold">
                         ISBN
                       </th>
-                      <th className="px-6 py-3 text-left text-gray-900 font-semibold">
+                      <th className="px-6 py-3 text-left text-gray-900 dark:text-gray-100 font-semibold">
                         Actions
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     {books.map((book) => (
-                      <tr key={book.id} className="border-b hover:bg-gray-50">
-                        <td className="px-6 py-3 text-gray-900">
+                      <tr key={book.id} className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750">
+                        <td className="px-6 py-3 text-gray-900 dark:text-gray-100">
                           {book.title}
                         </td>
-                        <td className="px-6 py-3 text-gray-600">
+                        <td className="px-6 py-3 text-gray-600 dark:text-gray-400">
                           {book.author}
                         </td>
-                        <td className="px-6 py-3 text-gray-600">
+                        <td className="px-6 py-3 text-gray-600 dark:text-gray-400">
                           {book.category}
                         </td>
-                        <td className="px-6 py-3 text-gray-600">{book.isbn}</td>
+                        <td className="px-6 py-3 text-gray-600 dark:text-gray-400">{book.isbn}</td>
                         <td className="px-6 py-3 flex gap-2">
                           <button
                             onClick={() => startEdit(book)}
@@ -562,39 +563,38 @@ export function AdminPanel({ user, onLogout }) {
                 Loading users...
               </div>
             ) : (
-              <div className="bg-white rounded-lg shadow overflow-hidden">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden transition-colors duration-200">
                 <table className="w-full">
-                  <thead className="bg-gray-100 border-b">
+                  <thead className="bg-gray-100 dark:bg-gray-700 border-b dark:border-gray-600 transition-colors duration-200">
                     <tr>
-                      <th className="px-6 py-3 text-left text-gray-900 font-semibold">
+                      <th className="px-6 py-3 text-left text-gray-900 dark:text-gray-100 font-semibold">
                         ID
                       </th>
-                      <th className="px-6 py-3 text-left text-gray-900 font-semibold">
+                      <th className="px-6 py-3 text-left text-gray-900 dark:text-gray-100 font-semibold">
                         Name
                       </th>
-                      <th className="px-6 py-3 text-left text-gray-900 font-semibold">
+                      <th className="px-6 py-3 text-left text-gray-900 dark:text-gray-100 font-semibold">
                         Email
                       </th>
-                      <th className="px-6 py-3 text-left text-gray-900 font-semibold">
+                      <th className="px-6 py-3 text-left text-gray-900 dark:text-gray-100 font-semibold">
                         Role
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     {users.map((u) => (
-                      <tr key={u.id} className="border-b hover:bg-gray-50">
-                        <td className="px-6 py-3 text-gray-900 font-semibold">
+                      <tr key={u.id} className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200">
+                        <td className="px-6 py-3 text-gray-900 dark:text-gray-100 font-semibold">
                           {u.id}
                         </td>
-                        <td className="px-6 py-3 text-gray-900">{u.name}</td>
-                        <td className="px-6 py-3 text-gray-600">{u.email}</td>
+                        <td className="px-6 py-3 text-gray-900 dark:text-gray-100">{u.name}</td>
+                        <td className="px-6 py-3 text-gray-600 dark:text-gray-400">{u.email}</td>
                         <td className="px-6 py-3">
                           <span
-                            className={`px-3 py-1 rounded text-sm font-semibold ${
-                              u.role === "admin"
-                                ? "bg-red-100 text-red-700"
-                                : "bg-blue-100 text-blue-700"
-                            }`}
+                            className={`px-3 py-1 rounded text-sm font-semibold ${u.role === "admin"
+                              ? "bg-red-100 text-red-700"
+                              : "bg-blue-100 text-blue-700"
+                              }`}
                           >
                             {u.role.toUpperCase()}
                           </span>
@@ -617,34 +617,34 @@ export function AdminPanel({ user, onLogout }) {
         {activeTab === "stats" && (
           <div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-lg shadow p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 transition-colors duration-200">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                   📚 Books Statistics
                 </h3>
                 <div className="space-y-3">
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-400">
                     Total Books:{" "}
-                    <strong className="text-2xl text-blue-600">
+                    <strong className="text-2xl text-blue-600 dark:text-blue-400">
                       {books.length}
                     </strong>
                   </p>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-400">
                     Available:{" "}
-                    <strong className="text-xl text-green-600">
+                    <strong className="text-xl text-green-600 dark:text-green-400">
                       {books.filter((b) => b.available).length}
                     </strong>
                   </p>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-gray-400">
                     Borrowed:{" "}
-                    <strong className="text-xl text-orange-600">
+                    <strong className="text-xl text-orange-600 dark:text-orange-400">
                       {books.filter((b) => !b.available).length}
                     </strong>
                   </p>
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg shadow p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 transition-colors duration-200">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                   📥 Export Data
                 </h3>
                 <div className="space-y-2">
@@ -657,7 +657,7 @@ export function AdminPanel({ user, onLogout }) {
                   <button
                     onClick={() => handleExport("history")}
                     className="gradient-btn"
-                    style={{background: 'linear-gradient(90deg,#10b981,#06b6d4)'}}
+                    style={{ background: 'linear-gradient(90deg,#10b981,#06b6d4)' }}
                   >
                     <Download size={18} /> Export History (CSV)
                   </button>

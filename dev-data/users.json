@@ -19,5 +19,19 @@
     "email": "emademad880800@gmail.com",
     "password": "emad89548948948",
     "role": "member"
+  },
+  {
+    "id": 4,
+    "name": "emad",
+    "email": "emad@gmail.com",
+    "password": "emad12",
+    "role": "member"
+  },
+  {
+    "id": 5,
+    "name": "emad",
+    "email": "emad12@gmail.com",
+    "password": "emad123",
+    "role": "member"
   }
 ]
