@@ -1,9 +1,9 @@
 :root {
-  /* pink-purple palette */
-  --accent-start: #be185d;
-  /* vivid pink */
-  --accent-end: #a855f7;
-  /* purple */
+  /* nearly dark indigo palette */
+  --accent-start: #312e81;
+  /* nearly dark indigo */
+  --accent-end: #3730a3;
+  /* dark indigo */
   --muted: #7b7f86;
   --bg: #f7f7fb;
 }

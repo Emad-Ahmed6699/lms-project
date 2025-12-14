@@ -116,7 +116,7 @@ export default function Auth({
             </form>
           )}
 
-          <div className="test-account-info">Test accounts:<br/> admin@test.com / adminpass <br/> ember@test.com / memberpass</div>
+          <div className="test-account-info">Test accounts:<br/> admin@test.com / adminpass <br/> emad12@gmail.com / emad123</div>
         </div>
       </div>
     </div>
