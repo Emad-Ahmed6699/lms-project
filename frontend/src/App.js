@@ -176,7 +176,7 @@ export default function App() {
     }
   };
 
-  const handleBorrow = async (bookId) => {
+ const handleBorrow = async (bookId) => {
     console.log("Attempting to borrow book:", bookId, "for user:", user.id);
     try {
       const res = await fetch(`${API}/borrow/${bookId}`, {
@@ -190,14 +190,21 @@ export default function App() {
       if (res.ok) {
         setMessage("Book borrowed successfully!");
         setTimeout(() => setMessage(""), 3000);
+
+        // 1. Manually update the books list to mark this book as unavailable
+        setBooks(prevBooks => 
+          prevBooks.map(book => 
+            book.id === bookId ? { ...book, available: false } : book
+          )
+        );
+
+        // 2. Fetch fresh data to ensure everything is synced
         fetchBooks();
         fetchMyBorrows();
       } else {
-        // Show the actual error message from backend
         const errorMsg = data.message || data.error || "Failed to borrow";
         setMessage(errorMsg);
         setTimeout(() => setMessage(""), 3000);
-        console.error("Borrow failed:", data);
       }
     } catch (err) {
       console.error("Borrow error:", err);
@@ -205,7 +212,6 @@ export default function App() {
       setTimeout(() => setMessage(""), 3000);
     }
   };
-
   const handleReturn = async (bookId) => {
     console.log("Attempting to return book:", bookId, "for user:", user.id);
     try {
