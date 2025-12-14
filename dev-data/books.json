@@ -1,113 +1,26 @@
 [
   {
-    "id": 3,
-    "title": "Sapiens",
-    "author": "Yuval Noah Harari",
-    "isbn": "978-0062316097",
-    "category": "History",
+    "id": 101,
+    "title": "The Hitchhiker's Guide",
+    "author": "Douglas Adams",
+    "isbn": "9780345391803",
+    "category": "Sci-Fi",
+    "available": true
+  },
+  {
+    "id": 102,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "isbn": "9780061120084",
+    "category": "Fiction",
     "available": false
   },
   {
-    "id": 4,
-    "title": "Spider man1 ",
-    "author": "Marvel ",
-    "isbn": "978-0451524123",
-    "category": "action",
-    "available": false,
-    "borrowedBy": null,
-    "borrowedAt": null,
-    "dueDate": null
-  },
-  {
-    "id": 5,
-    "title": "Spider man2 ",
-    "author": "Marvel ",
-    "isbn": "978-0451524123",
-    "category": "action",
-    "available": false,
-    "borrowedBy": null,
-    "borrowedAt": null,
-    "dueDate": null
-  },
-  {
-    "id": 6,
-    "title": "Spider man 3 ",
-    "author": "Marvel ",
-    "isbn": "978-0451524123",
-    "category": "action",
-    "available": false,
-    "borrowedBy": null,
-    "borrowedAt": null,
-    "dueDate": null
-  },
-  {
-    "id": 7,
-    "title": "Avengers End Game",
-    "author": "Marvel",
-    "isbn": "978-0451524123",
-    "category": "action",
-    "available": true,
-    "role": "admin",
-    "borrowedBy": null,
-    "borrowedAt": null,
-    "dueDate": null
-  },
-  {
-    "id": 8,
-    "title": "chainsaw man",
-    "author": "studio mapa",
-    "isbn": "978-0451524123",
-    "category": "action",
-    "available": false,
-    "role": "admin",
-    "borrowedBy": null,
-    "borrowedAt": null,
-    "dueDate": null
-  },
-  {
-    "id": 9,
-    "title": "chainsaw man",
-    "author": "studio mapa",
-    "isbn": "978-0451524123",
-    "category": "action",
-    "available": true,
-    "role": "admin",
-    "borrowedBy": null,
-    "borrowedAt": null,
-    "dueDate": null
-  },
-  {
-    "id": 10,
-    "title": "chainsaw man",
-    "author": "studio mapa",
-    "isbn": "978-0451524123",
-    "category": "action",
-    "available": true,
-    "role": "admin",
-    "borrowedBy": null,
-    "borrowedAt": null,
-    "dueDate": null
-  },
-  {
-    "id": 11,
-    "title": "Chainsaw Man Vol 3",
-    "author": "Tatsuki Fujimoto",
-    "category": "action",
-    "available": true
-  },
-  {
-    "id": 12,
-    "title": "Chainsaw Man Vol 4",
-    "author": "Tatsuki Fujimoto",
-    "category": "action",
-    "available": true
-  },
-  {
-    "id": 13,
-    "title": "the hobbit",
-    "author": "goerge R.R",
-    "isbn": "978-0062316394",
-    "category": "fiction",
+    "id": 103,
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "isbn": "9780132350884",
+    "category": "Tech",
     "available": true
   }
 ]

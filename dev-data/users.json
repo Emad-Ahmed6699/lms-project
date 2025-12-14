@@ -2,50 +2,15 @@
   {
     "id": 1,
     "role": "admin",
-    "name": "Abdelrahman ashraf",
-    "email": "admin1@lms.com",
-    "password": "admin1234"
+    "name": "Test Admin",
+    "email": "admin@test.com",
+    "password": "adminpass"
   },
   {
     "id": 2,
-    "role": "admin",
-    "name": "Abdelrahman gamal",
-    "email": "admin2@lms.com",
-    "password": "admin5678"
-  },
-  {
-    "id": 3,
-    "role": "admin",
-    "name": "Omar saber",
-    "email": "member1@lms.com",
-    "password": "hello,world"
-  },
-  {
-    "id": 4,
-    "role": "admin",
-    "name": "Abdelbaset rezk",
-    "email": "member2@lms.com",
-    "password": "eddieTheDucky"
-  },
-  {
-    "id": 5,
     "role": "member",
-    "name": "ali emad",
-    "email": "hello2@lms.com",
-    "password": "fuckoff123"
-  },
-  {
-    "id": 6,
-    "name": "taylor joseph",
-    "email": "tay123@gmail.com",
-    "password": "tay9090",
-    "role": "member"
-  },
-  {
-    "id": 7,
-    "name": "aloca",
-    "email": "member7@lms.com",
-    "password": "1234567",
-    "role": "member"
+    "name": "Test Member",
+    "email": "member@test.com",
+    "password": "memberpass"
   }
 ]
