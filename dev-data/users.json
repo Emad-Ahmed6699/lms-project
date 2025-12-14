@@ -12,5 +12,12 @@
     "name": "Test Member",
     "email": "member@test.com",
     "password": "memberpass"
+  },
+  {
+    "id": 3,
+    "name": "emad",
+    "email": "emademad880800@gmail.com",
+    "password": "emad89548948948",
+    "role": "member"
   }
 ]

@@ -10,6 +10,8 @@ import {
   Book,
 } from "lucide-react";
 
+import "./admin.css";
+
 const API = "http://localhost:3000/api";
 
 export function AdminPanel({ user, onLogout }) {
@@ -354,7 +356,7 @@ export function AdminPanel({ user, onLogout }) {
         {activeTab === "books" && (
           <div>
             <div className="mb-6">
-              <button
+            <button
                 onClick={() => {
                   setShowAddForm(!showAddForm);
                   setEditingId(null);
@@ -365,7 +367,7 @@ export function AdminPanel({ user, onLogout }) {
                     isbn: "",
                   });
                 }}
-                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+                className="admin-top-cta"
               >
                 <Plus size={18} /> Add New Book
               </button>
@@ -472,13 +474,13 @@ export function AdminPanel({ user, onLogout }) {
                 <div className="flex gap-2 mt-4">
                   <button
                     onClick={editingId ? handleEditBook : handleAddBook}
-                    className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700"
+                    className="gradient-btn"
                   >
                     {editingId ? "Update Book" : "Add Book"}
                   </button>
                   <button
                     onClick={cancelEdit}
-                    className="bg-gray-400 text-white px-6 py-2 rounded-lg hover:bg-gray-500"
+                    className="bg-gray-100 text-gray-700 px-6 py-2 rounded-full border"
                   >
                     Cancel
                   </button>
@@ -650,13 +652,14 @@ export function AdminPanel({ user, onLogout }) {
                 <div className="space-y-2">
                   <button
                     onClick={() => handleExport("books")}
-                    className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+                    className="gradient-btn"
                   >
                     <Download size={18} /> Export Books (CSV)
                   </button>
                   <button
                     onClick={() => handleExport("history")}
-                    className="w-full flex items-center justify-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+                    className="gradient-btn"
+                    style={{background: 'linear-gradient(90deg,#10b981,#06b6d4)'}}
                   >
                     <Download size={18} /> Export History (CSV)
                   </button>

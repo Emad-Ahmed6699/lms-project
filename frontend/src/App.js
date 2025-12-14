@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Eye, EyeOff, LogOut, Book, Search, Filter } from "lucide-react";
 import { AdminPanel } from "./AdminPanel";
+import Auth from "./Auth";
 
 const API = "http://localhost:3000/api";
 
@@ -17,6 +18,7 @@ export default function App() {
     name: "",
     email: "",
     password: "",
+    confirm: "",
   });
   const [showPassword, setShowPassword] = useState(false);
 
@@ -134,6 +136,10 @@ export default function App() {
       setMessage("All fields required");
       return;
     }
+    if (registerData.password !== registerData.confirm) {
+      setMessage("Passwords do not match");
+      return;
+    }
     setLoading(true);
     setMessage("");
     try {
@@ -146,7 +152,7 @@ export default function App() {
       if (res.ok) {
         setMessage("Registration successful! Please login.");
         setAuthPage("login");
-        setRegisterData({ name: "", email: "", password: "" });
+        setRegisterData({ name: "", email: "", password: "", confirm: "" });
       } else {
         setMessage(data.message || "Registration failed");
       }
@@ -225,170 +231,26 @@ export default function App() {
   // AUTH PAGE
   if (page === "auth") {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center p-4">
-        <div className="w-full max-w-md">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Book className="w-8 h-8 text-white" />
-              <h1 className="text-4xl font-bold text-white">LMS</h1>
-            </div>
-            <p className="text-blue-100">Library Management System</p>
-          </div>
-
-          <div className="bg-white rounded-lg shadow-xl p-8">
-            {message && (
-              <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
-                {message}
-              </div>
-            )}
-
-            <div className="flex gap-2 mb-6">
-              <button
-                onClick={() => setAuthPage("login")}
-                className={`flex-1 py-2 rounded font-semibold transition ${
-                  authPage === "login"
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-100 text-gray-700"
-                }`}
-              >
-                Login
-              </button>
-              <button
-                onClick={() => setAuthPage("register")}
-                className={`flex-1 py-2 rounded font-semibold transition ${
-                  authPage === "register"
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-100 text-gray-700"
-                }`}
-              >
-                Register
-              </button>
-            </div>
-
-            {authPage === "login" ? (
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    value={loginData.email}
-                    onChange={(e) =>
-                      setLoginData({ ...loginData, email: e.target.value })
-                    }
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                    placeholder="your@email.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
-                    Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      value={loginData.password}
-                      onChange={(e) =>
-                        setLoginData({ ...loginData, password: e.target.value })
-                      }
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                      placeholder="••••••"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-                    >
-                      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                    </button>
-                  </div>
-                </div>
-                <button
-                  onClick={handleLogin}
-                  disabled={loading}
-                  className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50"
-                >
-                  {loading ? "Logging in..." : "Login"}
-                </button>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    value={registerData.name}
-                    onChange={(e) =>
-                      setRegisterData({ ...registerData, name: e.target.value })
-                    }
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    value={registerData.email}
-                    onChange={(e) =>
-                      setRegisterData({
-                        ...registerData,
-                        email: e.target.value,
-                      })
-                    }
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                    placeholder="your@email.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
-                    Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      value={registerData.password}
-                      onChange={(e) =>
-                        setRegisterData({
-                          ...registerData,
-                          password: e.target.value,
-                        })
-                      }
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-                      placeholder="••••••"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-                    >
-                      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                    </button>
-                  </div>
-                </div>
-                <button
-                  onClick={handleRegister}
-                  disabled={loading}
-                  className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50"
-                >
-                  {loading ? "Registering..." : "Register"}
-                </button>
-              </div>
-            )}
-
-            <p className="text-center text-gray-600 text-sm mt-4">
-              Test: admin2@lms.com / admin5678
-            </p>
-          </div>
-        </div>
-      </div>
+      <Auth
+        authPage={authPage}
+        setAuthPage={setAuthPage}
+        loginData={loginData}
+        setLoginData={setLoginData}
+        registerData={registerData}
+        setRegisterData={setRegisterData}
+        showPassword={showPassword}
+        setShowPassword={setShowPassword}
+        handleLogin={handleLogin}
+        handleRegister={handleRegister}
+        loading={loading}
+        message={message}
+      />
     );
+  
   }
+
+  
+  // MEMBER BOOKS PAGE
 
   // MEMBER BOOKS PAGE
   return (
