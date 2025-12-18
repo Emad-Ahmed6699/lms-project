@@ -68,7 +68,8 @@
     "userId": 5,
     "borrowDate": "2025-12-14",
     "dueDate": "2025-12-21",
-    "returned": false
+    "returned": true,
+    "returnDate": "2025-12-16"
   },
   {
     "id": 9,
@@ -92,6 +93,23 @@
     "userId": 5,
     "borrowDate": "2025-12-14",
     "dueDate": "2025-12-21",
+    "returned": true,
+    "returnDate": "2025-12-16"
+  },
+  {
+    "id": 12,
+    "bookId": 101,
+    "userId": 5,
+    "borrowDate": "2025-12-16",
+    "dueDate": "2025-12-23",
+    "returned": false
+  },
+  {
+    "id": 13,
+    "bookId": 102,
+    "userId": 5,
+    "borrowDate": "2025-12-16",
+    "dueDate": "2025-12-23",
     "returned": false
   }
 ]

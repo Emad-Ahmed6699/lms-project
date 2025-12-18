@@ -5,10 +5,10 @@
     "author": "Thomas H. Cormen",
     "category": "Computer Science",
     "isbn": "9780262033848",
-    "available": true,
-    "borrowedBy": null,
-    "borrowedAt": null,
-    "dueDate": null
+    "available": false,
+    "borrowedBy": 5,
+    "borrowedAt": "2025-12-16",
+    "dueDate": "2025-12-23"
   },
   {
     "id": 102,
@@ -18,8 +18,8 @@
     "isbn": "9780262510875",
     "available": false,
     "borrowedBy": 5,
-    "borrowedAt": "2025-12-14",
-    "dueDate": "2025-12-21"
+    "borrowedAt": "2025-12-16",
+    "dueDate": "2025-12-23"
   },
   {
     "id": 103,
@@ -49,9 +49,9 @@
     "author": "Eric Freeman",
     "category": "Software Engineering",
     "isbn": "9780596007126",
-    "available": false,
-    "borrowedBy": 5,
-    "borrowedAt": "2025-12-14",
-    "dueDate": "2025-12-21"
+    "available": true,
+    "borrowedBy": null,
+    "borrowedAt": null,
+    "dueDate": null
   }
 ]

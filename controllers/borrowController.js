@@ -74,7 +74,6 @@ const borrowBook = (req, res) => {
   }
 
   // Update book availability and borrow details
-  // NOTE: This now updates the SHARED 'books' variable immediately!
   book.available = false;
   book.borrowedBy = userId;
   book.borrowedAt = new Date().toISOString().split("T")[0];

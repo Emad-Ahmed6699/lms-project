@@ -226,7 +226,7 @@ export default function App() {
       if (res.ok) {
         setMessage("✓ Book returned successfully! Switching to history...");
 
-        // Refresh data and wait for completion
+       
         await fetchBooks();
         await fetchMyBorrows();
 

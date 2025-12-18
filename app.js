@@ -22,7 +22,7 @@ app.use(morgan("dev"));
 
 app.use("/api/users", usersRouter); // User routes
 app.use("/api/books", bookRouter); // Book routes
-app.use("/api/borrow", borrowRouter); // Changed from /api/books
+app.use("/api/borrow", borrowRouter); // Borrow routes
 app.use("/api/history", historyRouter); // History routes
 
 export default app;

@@ -7,7 +7,7 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Helper function to reload users
+//  reload users
 
 const getUsers = () => {
   return JSON.parse(fs.readFileSync(`${__dirname}/../dev-data/users.json`));
@@ -147,8 +147,8 @@ const signIn = (req, res) => {
   // 3. Find user by checking BOTH Name AND Email
   const user = users.find(
     (u) =>
-      (u.email.toLowerCase() === loginInput.toLowerCase().trim() || 
-       u.name.toLowerCase() === loginInput.toLowerCase().trim()) &&
+      (u.email.toLowerCase() === loginInput.toLowerCase().trim() ||
+        u.name.toLowerCase() === loginInput.toLowerCase().trim()) &&
       u.password === password.trim()
   );
 
@@ -194,4 +194,4 @@ const getAllUsers = (req, res) => {
   }
 };
 
-export { signUp, signIn,getAllUsers };
+export { signUp, signIn, getAllUsers };

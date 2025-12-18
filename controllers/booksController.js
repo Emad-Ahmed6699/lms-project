@@ -134,8 +134,6 @@ const editBook = (req, res) => {
 
   const { title, author, category, available } = req.body;
 
-  // empty object
-
   if (!title && !author && !category && available === undefined) {
     return res.status(400).json({
       status: "fail",
@@ -297,7 +295,6 @@ const filterBook = (req, res) => {
 };
 
 const exportBooks = (req, res) => {
-  // ✅ Debug logs
   console.log("Export Books - Full query:", req.query);
   console.log("Export Books - userId:", req.query.userId);
 
@@ -314,14 +311,12 @@ const exportBooks = (req, res) => {
     });
   }
 
-  // ✅ Get users to check role
   const USERS_PATH = `${__dirname}/../dev-data/users.json`;
   const users = JSON.parse(fs.readFileSync(USERS_PATH));
   const user = users.find((u) => u.id === userId);
 
   console.log("Export Books - User found:", user);
 
-  // ✅ Verify user is admin
   if (!user) {
     console.log("Export Books - REJECTED: User not found");
     return res.status(403).json({
@@ -340,7 +335,6 @@ const exportBooks = (req, res) => {
 
   console.log("Export Books - SUCCESS: Exporting for admin user");
 
-  // ✅ If admin, proceed with export
   const csv = [
     "id,title,author,category,isbn,available",
     ...books.map(
@@ -355,7 +349,6 @@ const exportBooks = (req, res) => {
 };
 
 const exportHistory = (req, res) => {
-  // ✅ Debug logs
   console.log("Export History - Full query:", req.query);
   console.log("Export History - userId:", req.query.userId);
 
@@ -372,14 +365,12 @@ const exportHistory = (req, res) => {
     });
   }
 
-  // ✅ Get users to check role
   const USERS_PATH = `${__dirname}/../dev-data/users.json`;
   const users = JSON.parse(fs.readFileSync(USERS_PATH));
   const user = users.find((u) => u.id === userId);
 
   console.log("Export History - User found:", user);
 
-  // ✅ Verify user is admin
   if (!user) {
     console.log("Export History - REJECTED: User not found");
     return res.status(403).json({
@@ -401,7 +392,6 @@ const exportHistory = (req, res) => {
 
   console.log("Export History - SUCCESS: Exporting for admin user");
 
-  // ✅ If admin, proceed with export
   const csv = [
     "borrowId,bookId,userId,borrowedOn,dueDate,returned,returnedOn",
     ...borrowSheet.map(
