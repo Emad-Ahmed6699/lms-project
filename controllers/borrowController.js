@@ -72,14 +72,17 @@ const borrowBook = (req, res) => {
       message: "You have already borrowed this book",
     });
   }
+  const today = new Date();
+
+  const localDate = today.toLocaleDateString("en-CA");
 
   // Update book availability and borrow details
   book.available = false;
   book.borrowedBy = userId;
-  book.borrowedAt = new Date().toISOString().split("T")[0];
-  book.dueDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-    .toISOString()
-    .split("T")[0];
+  book.borrowedAt = localDate;
+  book.dueDate = new Date(
+    today.getTime() + 7 * 24 * 60 * 60 * 1000
+  ).toLocaleDateString("en-CA");
 
   // Create borrow record
   const newBorrow = {

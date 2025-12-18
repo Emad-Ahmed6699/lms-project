@@ -237,7 +237,7 @@ const bookStatus = (req, res) => {
   );
   if (borrowRecord) {
     borrowRecord.returned = true;
-    borrowRecord.returnDate = new Date().toISOString().split("T")[0];
+    borrowRecord.returnDate = new Date().toLocaleDateString("en-CA");
   }
 
   // Save books
@@ -332,20 +332,27 @@ const exportBooks = (req, res) => {
       message: "Only admins can export data",
     });
   }
+  try {
+    // Read fresh book data directly from the file
+    const freshBooksData = JSON.parse(fs.readFileSync(BOOKS_PATH));
 
-  console.log("Export Books - SUCCESS: Exporting for admin user");
+    console.log("Export Books - SUCCESS: Exporting books data");
 
-  const csv = [
-    "id,title,author,category,isbn,available",
-    ...books.map(
-      (b) =>
-        `${b.id},${b.title},${b.author},${b.category || ""},${b.isbn},${b.available}`
-    ),
-  ].join("\n");
+    const csv = [
+      "id,title,author,category,isbn,available",
+      ...freshBooksData.map(
+        (b) =>
+          `${b.id},${b.title},${b.author},${b.category || ""},${b.isbn},${b.available}`
+      ),
+    ].join("\n");
 
-  res.header("Content-Type", "text/csv");
-  res.attachment("books.csv");
-  res.send(csv);
+    res.header("Content-Type", "text/csv");
+    res.attachment("books.csv");
+    return res.send(csv);
+  } catch (err) {
+    console.error("Export Books Error:", err);
+    return res.status(500).json({ status: "error", message: "Export failed" });
+  }
 };
 
 const exportHistory = (req, res) => {
@@ -396,7 +403,9 @@ const exportHistory = (req, res) => {
     "borrowId,bookId,userId,borrowedOn,dueDate,returned,returnedOn",
     ...borrowSheet.map(
       (b) =>
-        `${b.id},${b.bookId},${b.userId},${b.borrowDate},${b.dueDate},${b.returned},${b.returnDate || ""}`
+        // Ensure these keys (b.borrowDate, b.dueDate, etc.) match
+        // the actual property names in your borrow.json file.
+        `${b.id},${b.bookId},${b.userId},${b.borrowDate || ""},${b.dueDate || ""},${b.returned},${b.returnDate || ""}`
     ),
   ].join("\n");
 
@@ -404,6 +413,7 @@ const exportHistory = (req, res) => {
   res.attachment("history.csv");
   res.send(csv);
 };
+
 export {
   getBooks,
   getBook,
