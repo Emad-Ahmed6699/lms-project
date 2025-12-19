@@ -9,7 +9,7 @@ import {
   LogOut,
   Book,
 } from "lucide-react";
-import ThemeToggle from './ThemeToggle';
+import ThemeToggle from "./ThemeToggle";
 
 import "./admin.css";
 
@@ -144,11 +144,6 @@ export function AdminPanel({ user, onLogout }) {
   };
 
   const handleEditBook = async () => {
-    // Removed strict client-side validation (for all fields)
-    // to allow partial updates (PATCH request).
-    // The backend (booksController.js) handles validation to ensure
-    // at least one field is provided for update (title, author, category, or available).
-
     try {
       const res = await fetch(`${API}/books/${editingId}`, {
         method: "PATCH",
@@ -166,7 +161,7 @@ export function AdminPanel({ user, onLogout }) {
       if (res.ok) {
         setMessage("Book updated successfully!");
         setMessageType("success");
-        // Ensure all fields are reset, including the new 'available' field
+        // Ensure all fields are reset
         setFormData({
           title: "",
           author: "",
@@ -177,7 +172,6 @@ export function AdminPanel({ user, onLogout }) {
         setEditingId(null);
         fetchBooks();
       } else {
-        // IMPROVED: Fetch and display the specific error message from the backend
         const data = await res.json();
         setMessage(data.message || "Error updating book");
         setMessageType("error");
@@ -303,10 +297,7 @@ export function AdminPanel({ user, onLogout }) {
                 <div className="admin-role">Admin</div>
               </div>
             </div>
-            <button
-              onClick={onLogout}
-              className="logout-btn"
-            >
+            <button onClick={onLogout} className="logout-btn">
               <span className="logout-icon">↪</span>
               <span className="logout-text">Logout</span>
             </button>
@@ -516,7 +507,10 @@ export function AdminPanel({ user, onLogout }) {
                   </thead>
                   <tbody>
                     {books.map((book) => (
-                      <tr key={book.id} className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750">
+                      <tr
+                        key={book.id}
+                        className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750"
+                      >
                         <td className="px-6 py-3 text-gray-900 dark:text-gray-100">
                           {book.title}
                         </td>
@@ -526,7 +520,9 @@ export function AdminPanel({ user, onLogout }) {
                         <td className="px-6 py-3 text-gray-600 dark:text-gray-400">
                           {book.category}
                         </td>
-                        <td className="px-6 py-3 text-gray-600 dark:text-gray-400">{book.isbn}</td>
+                        <td className="px-6 py-3 text-gray-600 dark:text-gray-400">
+                          {book.isbn}
+                        </td>
                         <td className="px-6 py-3 flex gap-2">
                           <button
                             onClick={() => startEdit(book)}
@@ -583,18 +579,26 @@ export function AdminPanel({ user, onLogout }) {
                   </thead>
                   <tbody>
                     {users.map((u) => (
-                      <tr key={u.id} className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200">
+                      <tr
+                        key={u.id}
+                        className="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors duration-200"
+                      >
                         <td className="px-6 py-3 text-gray-900 dark:text-gray-100 font-semibold">
                           {u.id}
                         </td>
-                        <td className="px-6 py-3 text-gray-900 dark:text-gray-100">{u.name}</td>
-                        <td className="px-6 py-3 text-gray-600 dark:text-gray-400">{u.email}</td>
+                        <td className="px-6 py-3 text-gray-900 dark:text-gray-100">
+                          {u.name}
+                        </td>
+                        <td className="px-6 py-3 text-gray-600 dark:text-gray-400">
+                          {u.email}
+                        </td>
                         <td className="px-6 py-3">
                           <span
-                            className={`px-3 py-1 rounded text-sm font-semibold ${u.role === "admin"
-                              ? "bg-red-100 text-red-700"
-                              : "bg-blue-100 text-blue-700"
-                              }`}
+                            className={`px-3 py-1 rounded text-sm font-semibold ${
+                              u.role === "admin"
+                                ? "bg-red-100 text-red-700"
+                                : "bg-blue-100 text-blue-700"
+                            }`}
                           >
                             {u.role.toUpperCase()}
                           </span>
@@ -657,7 +661,9 @@ export function AdminPanel({ user, onLogout }) {
                   <button
                     onClick={() => handleExport("history")}
                     className="gradient-btn"
-                    style={{ background: 'linear-gradient(90deg,#10b981,#06b6d4)' }}
+                    style={{
+                      background: "linear-gradient(90deg,#10b981,#06b6d4)",
+                    }}
                   >
                     <Download size={18} /> Export History (CSV)
                   </button>

@@ -3,13 +3,12 @@ const router = express.Router();
 import fs from "fs";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import { books, borrowSheet } from "./booksController.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const BOOKS_PATH = `${__dirname}/../dev-data/books.json`;
 const BORROWS_PATH = `${__dirname}/../dev-data/borrow.json`;
-
-let books = JSON.parse(fs.readFileSync(BOOKS_PATH));
-let borrowSheet = JSON.parse(fs.readFileSync(BORROWS_PATH));
 
 const borrowBook = (req, res) => {
   const { id: userId } = req.body;
@@ -55,18 +54,16 @@ const borrowBook = (req, res) => {
     });
   }
   const userActiveBorrows = borrowSheet.filter(
-    b => b.userId === userId && !b.returned
+    (b) => b.userId === userId && !b.returned
   );
 
-  // Now you can use it:
   const MAX_BORROWS = 5;
   if (userActiveBorrows.length >= MAX_BORROWS) {
     return res.status(400).json({
       status: "fail",
-      message: `Cannot borrow more than ${MAX_BORROWS} books at once`
+      message: `Cannot borrow more than ${MAX_BORROWS} books at once`,
     });
   }
-
 
   const alreadyBorrowed = userActiveBorrows.find((b) => b.bookId === bookId);
   if (alreadyBorrowed) {
@@ -75,14 +72,17 @@ const borrowBook = (req, res) => {
       message: "You have already borrowed this book",
     });
   }
+  const today = new Date();
+
+  const localDate = today.toLocaleDateString("en-CA");
 
   // Update book availability and borrow details
   book.available = false;
   book.borrowedBy = userId;
-  book.borrowedAt = new Date().toISOString().split("T")[0];
-  book.dueDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-    .toISOString()
-    .split("T")[0];
+  book.borrowedAt = localDate;
+  book.dueDate = new Date(
+    today.getTime() + 7 * 24 * 60 * 60 * 1000
+  ).toLocaleDateString("en-CA");
 
   // Create borrow record
   const newBorrow = {
@@ -97,7 +97,6 @@ const borrowBook = (req, res) => {
   borrowSheet.push(newBorrow);
 
   // Save to files
-
   fs.writeFile(BOOKS_PATH, JSON.stringify(books, null, 2), (err) => {
     if (err) {
       console.error("Books save failed:", err);
